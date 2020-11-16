@@ -63,7 +63,7 @@
   "standard-version": {
     "scripts": {
       "prerelease": "rm -rf dist/*",
-      "posttag": "yarn dist:publish"
+      "posttag": "yarn dist:publish && git push --follow-tags origin master"
     }
   }
 }
