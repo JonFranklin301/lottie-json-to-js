@@ -31,6 +31,8 @@ function createMainWindow() {
         slashes: true,
       })
     );
+
+    window.removeMenu();
   }
 
   window.on('closed', () => {
