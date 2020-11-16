@@ -1,0 +1,62 @@
+{
+  "name": "lottie-json-to-js",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Jon Franklin",
+  "description": "Convert Lottie/BodyMovin JSON animations to .js files",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonfranklin301/lottie-json-to-js-converter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonfranklin301/lottie-json-to-js-converter/issues"
+  },
+  "homepage": "https://github.com/jonfranklin301/lottie-json-to-js-converter#readme",
+  "keywords": [
+    "lottie",
+    "json to js"
+  ],
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "dist:publish": "yarn compile && electron-builder -p"
+  },
+  "build": {
+    "appId": "com.electron.lottie-json-to-js",
+    "productName": "Lottie to JS",
+    "publisher": "Jon Franklin",
+    "win": {
+      "target": "portable",
+      "icon": "build/icon.ico"
+    }
+  },
+  "electronWebpack": {
+    "whiteListedModules": [
+      "react-dropzone"
+    ]
+  },
+  "dependencies": {
+    "lodash.camelcase": "^4.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-dropzone": "^11.2.0",
+    "react-transition-group": "^4.4.1",
+    "source-map-support": "^0.5.16"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.10.4",
+    "electron": "8.2.0",
+    "electron-builder": "^22.4.1",
+    "electron-webpack": "^2.8.2",
+    "standard-version": "^9.0.0",
+    "webpack": "~4.42.1"
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "rm -rf dist/*",
+      "postbump": "dist:publish"
+    }
+  }
+}
