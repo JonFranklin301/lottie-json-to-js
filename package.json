@@ -1,17 +1,17 @@
 {
   "name": "lottie-json-to-js",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Jon Franklin",
   "description": "Convert Lottie/BodyMovin JSON animations to .js files",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonfranklin301/lottie-json-to-js.git"
+    "url": "git+https://github.com/jonfranklin301/lottie-json-to-js-converter.git"
   },
   "bugs": {
-    "url": "https://github.com/jonfranklin301/lottie-json-to-js/issues"
+    "url": "https://github.com/jonfranklin301/lottie-json-to-js-converter/issues"
   },
-  "homepage": "https://github.com/jonfranklin301/lottie-json-to-js#readme",
+  "homepage": "https://github.com/jonfranklin301/lottie-json-to-js-converter#readme",
   "keywords": [
     "lottie",
     "json to js"
@@ -19,25 +19,18 @@
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder -p=never",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null -p=never",
-    "dist:publish": "yarn compile && electron-builder -p=always",
-    "release": "standard-version",
-    "version": "echo \"Error: use npm run release\" && exit 1"
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "dist:publish": "yarn compile && electron-builder -p"
   },
   "build": {
     "appId": "com.electron.lottie-json-to-js",
     "productName": "Lottie to JS",
+    "publisher": "Jon Franklin",
     "win": {
       "target": "portable",
       "icon": "build/icon.ico"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "jonfranklin301"
-      }
-    ]
+    }
   },
   "electronWebpack": {
     "whiteListedModules": [
@@ -63,7 +56,7 @@
   "standard-version": {
     "scripts": {
       "prerelease": "rm -rf dist/*",
-      "posttag": "yarn dist:publish"
+      "postbump": "dist:publish"
     }
   }
 }
